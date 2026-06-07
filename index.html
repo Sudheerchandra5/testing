@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main class="clock-shell" aria-label="Digital clock">
+        <section class="clock-card">
+            <p class="eyebrow">World time</p>
+            <div class="selector-grid">
+                <div class="selector-group">
+                    <label for="country-select">Choose country</label>
+                    <select id="country-select" aria-label="Choose country">
+                        <option value="IN">India</option>
+                        <option value="US">United States</option>
+                        <option value="GB">United Kingdom</option>
+                        <option value="AE">United Arab Emirates</option>
+                        <option value="SG">Singapore</option>
+                        <option value="JP">Japan</option>
+                        <option value="AU">Australia</option>
+                        <option value="DE">Germany</option>
+                        <option value="FR">France</option>
+                        <option value="CA">Canada</option>
+                        <option value="MX">Mexico</option>
+                        <option value="BR">Brazil</option>
+                        <option value="ZA">South Africa</option>
+                        <option value="CN">China</option>
+                    </select>
+                </div>
+                <div class="selector-group">
+                    <label for="timezone-select">Available time zones</label>
+                    <select id="timezone-select" aria-label="Choose time zone">
+                </select>
+                </div>
+            </div>
+            <div class="time-display" aria-live="polite">
+                <span id="hours">00</span>
+                <span class="separator">:</span>
+                <span id="minutes">00</span>
+                <span class="separator">:</span>
+                <span id="seconds">00</span>
+                <span id="period" class="period">AM</span>
+            </div>
+            <p id="date" class="date-display">Loading date...</p>
+            <p id="location" class="location-display">New Delhi, India</p>
+            <div class="status-row">
+                <span class="status-dot" aria-hidden="true"></span>
+                <span>Updated every second</span>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
