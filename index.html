@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main class="clock-shell" aria-label="Digital clock">
+        <section class="clock-card">
+            <p class="eyebrow">Local time</p>
+            <div class="time-display" aria-live="polite">
+                <span id="hours">00</span>
+                <span class="separator">:</span>
+                <span id="minutes">00</span>
+                <span class="separator">:</span>
+                <span id="seconds">00</span>
+                <span id="period" class="period">AM</span>
+            </div>
+            <p id="date" class="date-display">Loading date...</p>
+            <div class="status-row">
+                <span class="status-dot" aria-hidden="true"></span>
+                <span>Updated every second</span>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
