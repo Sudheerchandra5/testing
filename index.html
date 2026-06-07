@@ -9,7 +9,26 @@
 <body>
     <main class="clock-shell" aria-label="Digital clock">
         <section class="clock-card">
-            <p class="eyebrow">Local time</p>
+            <p class="eyebrow">World time</p>
+            <div class="selector-group">
+                <label for="country-select">Choose country</label>
+                <select id="country-select" aria-label="Choose country time zone">
+                    <option value="Asia/Kolkata" data-location="New Delhi, India">India</option>
+                    <option value="America/New_York" data-location="New York, United States">United States</option>
+                    <option value="Europe/London" data-location="London, United Kingdom">United Kingdom</option>
+                    <option value="Asia/Dubai" data-location="Dubai, United Arab Emirates">United Arab Emirates</option>
+                    <option value="Asia/Singapore" data-location="Singapore">Singapore</option>
+                    <option value="Asia/Tokyo" data-location="Tokyo, Japan">Japan</option>
+                    <option value="Australia/Sydney" data-location="Sydney, Australia">Australia</option>
+                    <option value="Europe/Berlin" data-location="Berlin, Germany">Germany</option>
+                    <option value="Europe/Paris" data-location="Paris, France">France</option>
+                    <option value="America/Toronto" data-location="Toronto, Canada">Canada</option>
+                    <option value="America/Mexico_City" data-location="Mexico City, Mexico">Mexico</option>
+                    <option value="America/Sao_Paulo" data-location="Sao Paulo, Brazil">Brazil</option>
+                    <option value="Africa/Johannesburg" data-location="Johannesburg, South Africa">South Africa</option>
+                    <option value="Asia/Shanghai" data-location="Shanghai, China">China</option>
+                </select>
+            </div>
             <div class="time-display" aria-live="polite">
                 <span id="hours">00</span>
                 <span class="separator">:</span>
@@ -19,6 +38,7 @@
                 <span id="period" class="period">AM</span>
             </div>
             <p id="date" class="date-display">Loading date...</p>
+            <p id="location" class="location-display">New Delhi, India</p>
             <div class="status-row">
                 <span class="status-dot" aria-hidden="true"></span>
                 <span>Updated every second</span>

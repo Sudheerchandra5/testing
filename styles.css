@@ -63,6 +63,42 @@ body {
     text-transform: uppercase;
 }
 
+.selector-group {
+    display: grid;
+    gap: 0.55rem;
+    width: min(100%, 22rem);
+    margin: 0 auto 1.5rem;
+    text-align: left;
+}
+
+.selector-group label {
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.selector-group select {
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 1rem;
+    padding: 0.85rem 1rem;
+    color: var(--text-primary);
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.04)),
+        rgba(8, 19, 36, 0.92);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+    font: inherit;
+    font-weight: 700;
+    outline: none;
+}
+
+.selector-group select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 0.2rem rgba(100, 210, 255, 0.18);
+}
+
 .time-display {
     display: flex;
     align-items: baseline;
@@ -94,9 +130,16 @@ body {
 }
 
 .date-display {
-    margin: 1.25rem 0 2rem;
+    margin: 1.25rem 0 0.4rem;
     color: var(--text-secondary);
     font-size: clamp(1rem, 2.5vw, 1.35rem);
+}
+
+.location-display {
+    margin: 0 0 2rem;
+    color: var(--accent);
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+    font-weight: 700;
 }
 
 .status-row {
