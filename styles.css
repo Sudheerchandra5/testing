@@ -63,11 +63,18 @@ body {
     text-transform: uppercase;
 }
 
+.selector-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    width: min(100%, 42rem);
+    margin: 0 auto 1.5rem;
+}
+
 .selector-group {
     display: grid;
     gap: 0.55rem;
-    width: min(100%, 22rem);
-    margin: 0 auto 1.5rem;
+    width: 100%;
     text-align: left;
 }
 
@@ -174,6 +181,10 @@ body {
 }
 
 @media (max-width: 40rem) {
+    .selector-grid {
+        grid-template-columns: 1fr;
+    }
+
     .time-display {
         flex-wrap: wrap;
         letter-spacing: -0.05em;
