@@ -1,24 +1,38 @@
-# Paint — Touch Drawing App
+# Create Studio — Paint & Animation
 
-A simple MS Paint–style web drawing app. Draw with your finger on a touchscreen, with a mouse, or with a stylus.
+A browser creative studio with two workspaces:
 
-## Features
-
-- **Touch-friendly drawing** — uses the Pointer Events API for smooth finger, mouse, and pen input
-- **Tools** — brush, pencil, eraser, line, rectangle, circle, fill background, clear
-- **Color palette** — classic paint colors plus a custom color picker
-- **Brush size** — adjustable from 1–80 px
-- **Undo** — step back through recent changes
-- **Save** — export your drawing as a PNG
+1. **MS Paint** — classic freehand drawing with touch, mouse, and stylus
+2. **2D / 3D Animation Creator** — add shapes, keyframe motion, and play back animations
 
 ## Run locally
-
-Open `index.html` in a browser, or serve the folder with any static server:
 
 ```bash
 python3 -m http.server 8080
 ```
 
-Then open http://localhost:8080
+Open http://localhost:8080
 
-For the best touch experience, use a phone or tablet, or a laptop with a touchscreen.
+## MS Paint
+
+- Brush, pencil, eraser, line, rectangle, circle, fill, clear
+- Color palette + custom color
+- Adjustable brush size, undo, save as PNG
+- Touch-friendly pointer drawing (`touch-action: none`)
+
+## 2D / 3D Animation Creator
+
+- Toggle **2D** or **3D** mode (perspective projection in 3D)
+- Add circle, rect, triangle, cube, sphere
+- Drag objects on the stage (touch supported)
+- Scrub the timeline, set **keyframes**, play / pause / stop
+- Adjust X / Y / Z, size, rotation, color
+- Export animation data as JSON
+
+## Files
+
+- `index.html` — menu + both workspaces
+- `styles.css` — menu and app UI
+- `app.js` — view navigation
+- `paint.js` — paint workspace
+- `animation.js` — animation workspace

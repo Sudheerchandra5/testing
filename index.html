@@ -3,79 +3,189 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Paint — Draw with touch or mouse</title>
+  <title>Create Studio — Paint & Animation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="app">
-    <header class="title-bar">
-      <span class="title">Paint</span>
-      <div class="title-actions">
-        <button type="button" id="btn-undo" class="title-btn" title="Undo" disabled>↶ Undo</button>
-        <button type="button" id="btn-download" class="title-btn" title="Save image">💾 Save</button>
+  <!-- MAIN MENU -->
+  <section id="view-menu" class="view view-menu is-active" aria-label="Main menu">
+    <div class="menu-atmosphere" aria-hidden="true"></div>
+    <div class="menu-content">
+      <p class="menu-brand">Create Studio</p>
+      <h1 class="menu-headline">What do you want to make?</h1>
+      <p class="menu-sub">Pick a workspace. Touch, mouse, and stylus all work.</p>
+      <div class="menu-choices">
+        <button type="button" class="menu-choice" data-open="paint">
+          <span class="choice-visual paint-visual" aria-hidden="true"></span>
+          <span class="choice-copy">
+            <span class="choice-title">MS Paint</span>
+            <span class="choice-desc">Draw freehand with brush, shapes, and colors — like classic Paint, built for touch.</span>
+          </span>
+        </button>
+        <button type="button" class="menu-choice" data-open="animation">
+          <span class="choice-visual anim-visual" aria-hidden="true"></span>
+          <span class="choice-copy">
+            <span class="choice-title">2D / 3D Animation Creator</span>
+            <span class="choice-desc">Add shapes, set keyframes, and play back motion in 2D or simple 3D.</span>
+          </span>
+        </button>
       </div>
-    </header>
+    </div>
+  </section>
 
-    <aside class="toolbar" aria-label="Drawing tools">
-      <button type="button" class="tool active" data-tool="brush" title="Brush">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 2L22 4L11 15L7 11L20 2Z" fill="currentColor"/><path d="M7 11L3 15L2 22L9 21L13 17" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
-        <span>Brush</span>
-      </button>
-      <button type="button" class="tool" data-tool="pencil" title="Pencil">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21L9 15L15 21H3Z" fill="currentColor"/><path d="M9 15L3 9L12 3L21 12L15 18" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
-        <span>Pencil</span>
-      </button>
-      <button type="button" class="tool" data-tool="eraser" title="Eraser">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="14" width="14" height="6" rx="1" fill="currentColor"/><path d="M6 14L14 6L20 12L12 20H6V14Z" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
-        <span>Eraser</span>
-      </button>
-      <button type="button" class="tool" data-tool="line" title="Line">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="4" y1="20" x2="20" y2="4" stroke="currentColor" stroke-width="2"/></svg>
-        <span>Line</span>
-      </button>
-      <button type="button" class="tool" data-tool="rect" title="Rectangle">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="6" width="16" height="14" stroke="currentColor" stroke-width="2" fill="none"/></svg>
-        <span>Rect</span>
-      </button>
-      <button type="button" class="tool" data-tool="circle" title="Circle">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="2" fill="none"/></svg>
-        <span>Circle</span>
-      </button>
-      <button type="button" class="tool" data-tool="fill" title="Fill background">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 11H5M19 11C20.1 11 21 11.9 21 13V19C21 20.1 20.1 21 19 21H5C3.9 21 3 20.1 3 19V13C3 11.9 3.9 11 5 11M9 7V5C9 3.9 9.9 3 11 3H13C14.1 3 15 3.9 15 5V7" stroke="currentColor" stroke-width="1.5" fill="none"/><rect x="7" y="11" width="10" height="10" fill="currentColor" opacity="0.3"/></svg>
-        <span>Fill</span>
-      </button>
-      <button type="button" class="tool danger" id="btn-clear" title="Clear canvas">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6H5H21" stroke="currentColor" stroke-width="2"/><path d="M8 6V4C8 3.4 8.4 3 9 3H15C15.6 3 16 3.4 16 4V6M19 6V20C19 20.6 18.6 21 18 21H6C5.4 21 5 20.6 5 20V6H19Z" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
-        <span>Clear</span>
-      </button>
-    </aside>
-
-    <main class="workspace">
-      <div class="options-bar">
-        <label class="option">
-          <span>Size</span>
-          <input type="range" id="brush-size" min="1" max="80" value="8" />
-          <output id="brush-size-label">8</output>
-        </label>
-        <div class="color-section">
-          <span class="option-label">Colors</span>
-          <div class="palette" id="palette" role="listbox" aria-label="Color palette"></div>
-          <label class="custom-color">
-            <span>Custom</span>
-            <input type="color" id="custom-color" value="#000000" />
-          </label>
-          <div class="color-preview" id="color-preview" title="Current color"></div>
+  <!-- MS PAINT -->
+  <section id="view-paint" class="view view-paint" aria-label="MS Paint" hidden>
+    <div class="app paint-app">
+      <header class="title-bar">
+        <div class="title-left">
+          <button type="button" class="title-btn back-btn" data-back title="Back to menu">← Menu</button>
+          <span class="title">MS Paint</span>
         </div>
-      </div>
+        <div class="title-actions">
+          <button type="button" id="btn-undo" class="title-btn" title="Undo" disabled>↶ Undo</button>
+          <button type="button" id="btn-download" class="title-btn" title="Save image">Save</button>
+        </div>
+      </header>
 
-      <div class="canvas-wrap" id="canvas-wrap">
-        <canvas id="canvas" aria-label="Drawing canvas"></canvas>
-        <p class="hint" id="hint">Draw with your finger, mouse, or stylus</p>
-      </div>
-    </main>
-  </div>
+      <aside class="toolbar" aria-label="Drawing tools">
+        <button type="button" class="tool active" data-tool="brush" title="Brush">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 2L22 4L11 15L7 11L20 2Z" fill="currentColor"/><path d="M7 11L3 15L2 22L9 21L13 17" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+          <span>Brush</span>
+        </button>
+        <button type="button" class="tool" data-tool="pencil" title="Pencil">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21L9 15L15 21H3Z" fill="currentColor"/><path d="M9 15L3 9L12 3L21 12L15 18" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+          <span>Pencil</span>
+        </button>
+        <button type="button" class="tool" data-tool="eraser" title="Eraser">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="14" width="14" height="6" rx="1" fill="currentColor"/><path d="M6 14L14 6L20 12L12 20H6V14Z" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+          <span>Eraser</span>
+        </button>
+        <button type="button" class="tool" data-tool="line" title="Line">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="4" y1="20" x2="20" y2="4" stroke="currentColor" stroke-width="2"/></svg>
+          <span>Line</span>
+        </button>
+        <button type="button" class="tool" data-tool="rect" title="Rectangle">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="6" width="16" height="14" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+          <span>Rect</span>
+        </button>
+        <button type="button" class="tool" data-tool="circle" title="Circle">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+          <span>Circle</span>
+        </button>
+        <button type="button" class="tool" data-tool="fill" title="Fill background">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 11H5M19 11C20.1 11 21 11.9 21 13V19C21 20.1 20.1 21 19 21H5C3.9 21 3 20.1 3 19V13C3 11.9 3.9 11 5 11M9 7V5C9 3.9 9.9 3 11 3H13C14.1 3 15 3.9 15 5V7" stroke="currentColor" stroke-width="1.5" fill="none"/><rect x="7" y="11" width="10" height="10" fill="currentColor" opacity="0.3"/></svg>
+          <span>Fill</span>
+        </button>
+        <button type="button" class="tool danger" id="btn-clear" title="Clear canvas">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6H5H21" stroke="currentColor" stroke-width="2"/><path d="M8 6V4C8 3.4 8.4 3 9 3H15C15.6 3 16 3.4 16 4V6M19 6V20C19 20.6 18.6 21 18 21H6C5.4 21 5 20.6 5 20V6H19Z" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+          <span>Clear</span>
+        </button>
+      </aside>
 
+      <main class="workspace">
+        <div class="options-bar">
+          <label class="option">
+            <span>Size</span>
+            <input type="range" id="brush-size" min="1" max="80" value="8" />
+            <output id="brush-size-label">8</output>
+          </label>
+          <div class="color-section">
+            <span class="option-label">Colors</span>
+            <div class="palette" id="palette" role="listbox" aria-label="Color palette"></div>
+            <label class="custom-color">
+              <span>Custom</span>
+              <input type="color" id="custom-color" value="#000000" />
+            </label>
+            <div class="color-preview" id="color-preview" title="Current color"></div>
+          </div>
+        </div>
+
+        <div class="canvas-wrap" id="canvas-wrap">
+          <canvas id="canvas" aria-label="Drawing canvas"></canvas>
+          <p class="hint" id="hint">Draw with your finger, mouse, or stylus</p>
+        </div>
+      </main>
+    </div>
+  </section>
+
+  <!-- ANIMATION CREATOR -->
+  <section id="view-animation" class="view view-animation" aria-label="Animation creator" hidden>
+    <div class="app anim-app">
+      <header class="title-bar anim-title-bar">
+        <div class="title-left">
+          <button type="button" class="title-btn back-btn" data-back title="Back to menu">← Menu</button>
+          <span class="title">2D / 3D Animation Creator</span>
+        </div>
+        <div class="title-actions">
+          <div class="mode-toggle" role="group" aria-label="Dimension mode">
+            <button type="button" class="mode-btn active" data-mode="2d">2D</button>
+            <button type="button" class="mode-btn" data-mode="3d">3D</button>
+          </div>
+        </div>
+      </header>
+
+      <aside class="anim-sidebar" aria-label="Animation tools">
+        <h2 class="side-heading">Add object</h2>
+        <div class="add-grid">
+          <button type="button" class="add-btn" data-add="circle">Circle</button>
+          <button type="button" class="add-btn" data-add="rect">Rect</button>
+          <button type="button" class="add-btn" data-add="triangle">Triangle</button>
+          <button type="button" class="add-btn" data-add="cube">Cube</button>
+          <button type="button" class="add-btn" data-add="sphere">Sphere</button>
+        </div>
+
+        <h2 class="side-heading">Objects</h2>
+        <ul class="object-list" id="object-list"></ul>
+
+        <h2 class="side-heading">Properties</h2>
+        <div class="props" id="props-panel">
+          <p class="props-empty" id="props-empty">Select or add an object</p>
+          <div class="props-fields" id="props-fields" hidden>
+            <label>Color <input type="color" id="prop-color" value="#e85d4c" /></label>
+            <label>X <input type="range" id="prop-x" min="-300" max="300" value="0" /><output id="prop-x-out">0</output></label>
+            <label>Y <input type="range" id="prop-y" min="-200" max="200" value="0" /><output id="prop-y-out">0</output></label>
+            <label class="prop-z">Z <input type="range" id="prop-z" min="-200" max="200" value="0" /><output id="prop-z-out">0</output></label>
+            <label>Size <input type="range" id="prop-size" min="10" max="160" value="60" /><output id="prop-size-out">60</output></label>
+            <label>Rotate <input type="range" id="prop-rot" min="0" max="360" value="0" /><output id="prop-rot-out">0°</output></label>
+            <button type="button" class="title-btn danger-btn" id="btn-delete-obj">Delete object</button>
+          </div>
+        </div>
+      </aside>
+
+      <main class="anim-main">
+        <div class="stage-wrap" id="stage-wrap">
+          <canvas id="stage" aria-label="Animation stage"></canvas>
+          <p class="hint" id="anim-hint">Drag objects on the stage · set keyframes · press Play</p>
+        </div>
+
+        <div class="timeline-bar">
+          <div class="playback">
+            <button type="button" class="title-btn" id="btn-play" title="Play">▶ Play</button>
+            <button type="button" class="title-btn" id="btn-stop" title="Stop">■ Stop</button>
+            <button type="button" class="title-btn" id="btn-keyframe" title="Add keyframe">◆ Keyframe</button>
+            <button type="button" class="title-btn" id="btn-export-anim" title="Export GIF-like frames as JSON">Export</button>
+          </div>
+          <label class="option timeline-scrub">
+            <span>Frame</span>
+            <input type="range" id="frame-slider" min="0" max="60" value="0" />
+            <output id="frame-label">0 / 60</output>
+          </label>
+          <label class="option">
+            <span>FPS</span>
+            <input type="range" id="fps-slider" min="6" max="30" value="12" />
+            <output id="fps-label">12</output>
+          </label>
+          <div class="keyframe-track" id="keyframe-track" aria-label="Keyframe markers"></div>
+        </div>
+      </main>
+    </div>
+  </section>
+
+  <script src="paint.js"></script>
+  <script src="animation.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
