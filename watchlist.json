@@ -1,0 +1,8 @@
+{
+  "etfs": ["SPY", "QQQ", "VTI", "VOO", "IWM", "EFA", "AGG", "GLD"],
+  "holdings": {
+    "SPY": 10,
+    "QQQ": 5,
+    "VTI": 20
+  }
+}
