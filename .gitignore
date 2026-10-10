@@ -1,0 +1,9 @@
+output/clips/
+output/panels/
+output/anim_frames/
+output/rig2d_frames/
+output/svd_clips/
+blender-4.2.3-linux-x64/
+mesa-libs/
+__pycache__/
+*.log
